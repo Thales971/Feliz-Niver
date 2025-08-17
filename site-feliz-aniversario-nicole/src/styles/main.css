@@ -1,74 +1,157 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0e5ff;
-    color: #333;
+/* Fonte alegre do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap');
+
+:root {
+    --roxo-escuro: #6c2eb7;
+    --roxo-claro: #b47cff;
+    --branco: #fff;
+    --rosa: #ffb6e6;
+    --amarelo: #ffe066;
+}
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', Arial, sans-serif;
+    background: linear-gradient(135deg, var(--roxo-escuro), var(--roxo-claro));
+    color: var(--branco);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    animation: bgMove 10s infinite alternate;
+}
+
+@keyframes bgMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+}
+
+header {
     text-align: center;
-    transition: background-color 0.5s ease;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 1.2s;
 }
 
-h1 {
-    font-size: 3em;
-    color: #6a0dad;
-    margin-bottom: 20px;
-    animation: fadeIn 2s;
+header h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: var(--amarelo);
+    text-shadow: 2px 2px 8px var(--roxo-escuro);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
 }
 
-h2 {
-    font-size: 2em;
-    color: #ff6347;
-    margin-bottom: 30px;
-    animation: fadeIn 2s;
+header p {
+    font-size: 1.2rem;
+    color: var(--rosa);
 }
 
-.message {
-    font-size: 1.5em;
-    margin: 20px;
-    padding: 10px;
-    border: 2px solid #6a0dad;
+main {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem;
+    background: rgba(108, 46, 183, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(44, 0, 80, 0.2);
+    margin-bottom: 2rem;
+    animation: fadeInUp 1.2s;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+.messages h2,
+.gallery h2 {
+    font-family: 'Pacifico', cursive;
+    color: var(--amarelo);
+    margin-bottom: 0.7rem;
+    font-size: 1.5rem;
+}
+
+.messages p {
+    margin-bottom: 0.7rem;
+    font-size: 1.1rem;
+    background: rgba(255,255,255,0.1);
     border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    padding: 0.7rem;
+    color: var(--branco);
+    box-shadow: 0 2px 8px 0 rgba(180,124,255,0.1);
+    transition: transform 0.2s;
 }
 
-.message:hover {
-    transform: scale(1.05);
+.messages p:hover {
+    transform: scale(1.03) rotate(-2deg);
+    background: var(--rosa);
+    color: var(--roxo-escuro);
 }
 
-button {
-    background-color: #6a0dad;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-button:hover {
-    background-color: #ff6347;
+.gallery img {
+    width: 90%;
+    max-width: 320px;
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 16px 0 rgba(180,124,255,0.3);
+    border: 3px solid var(--amarelo);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: pulse 2s infinite alternate;
 }
 
+.gallery img:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 8px 32px 0 rgba(255,182,230,0.4);
+}
+
+footer {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--amarelo);
+    font-family: 'Pacifico', cursive;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 6px var(--roxo-escuro);
+    animation: fadeIn 2s;
+}
+
+/* Animações */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px);}
+    to { opacity: 1; transform: translateY(0);}
+}
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--rosa);}
+    100% { box-shadow: 0 0 24px 8px var(--rosa);}
 }
 
-.footer {
-    position: absolute;
-    bottom: 20px;
-    font-size: 0.8em;
-    color: #666;
+/* Responsividade */
+@media (max-width: 600px) {
+    main {
+        padding: 0.5rem;
+        max-width: 98vw;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    .gallery img {
+        max-width: 98vw;
+    }
 }
